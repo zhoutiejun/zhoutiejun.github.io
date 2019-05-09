@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 周铁俊的博客</title>
+  <title>aop实现打印请求参数 | 周铁俊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="描述">
+  <meta name="description" content="Spring aop实现打印请求参数，方法名，返回数据等等信息12345678910111213141516171819202122232425262728293031323334353637383940414243@Aspect@Configurationpublic class LogRecordAspect &amp;#123;    private org.slf4j.Logger logger">
 <meta name="keywords" content="周铁俊">
-<meta property="og:type" content="website">
-<meta property="og:title" content="周铁俊的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aop实现打印请求参数">
+<meta property="og:url" content="http://yoursite.com/2019/05/09/aop实现打印请求参数/index.html">
 <meta property="og:site_name" content="周铁俊的博客">
-<meta property="og:description" content="描述">
+<meta property="og:description" content="Spring aop实现打印请求参数，方法名，返回数据等等信息12345678910111213141516171819202122232425262728293031323334353637383940414243@Aspect@Configurationpublic class LogRecordAspect &amp;#123;    private org.slf4j.Logger logger">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-09T06:10:45.933Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="周铁俊的博客">
-<meta name="twitter:description" content="描述">
+<meta name="twitter:title" content="aop实现打印请求参数">
+<meta name="twitter:description" content="Spring aop实现打印请求参数，方法名，返回数据等等信息12345678910111213141516171819202122232425262728293031323334353637383940414243@Aspect@Configurationpublic class LogRecordAspect &amp;#123;    private org.slf4j.Logger logger">
   
     <link rel="alternative" href="/atom.xml" title="周铁俊的博客" type="application/atom+xml">
   
@@ -154,157 +155,159 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="spring-aop实现打印请求参数" class="article article-type-spring " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      aop实现打印请求参数
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-spring">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/09/aop实现打印请求参数/" class="archive-article-date">
+
+        
+        <a href="/2019/05/09/aop实现打印请求参数/" class="archive-article-date">
   	<time datetime="2019-05-09T06:10:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/09/aop实现打印请求参数/">aop实现打印请求参数</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring-aop实现打印请求参数，方法名，返回数据等等信息"><a href="#Spring-aop实现打印请求参数，方法名，返回数据等等信息" class="headerlink" title="Spring aop实现打印请求参数，方法名，返回数据等等信息"></a>Spring aop实现打印请求参数，方法名，返回数据等等信息</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Aspect</span><br><span class="line">@Configuration</span><br><span class="line">public class LogRecordAspect &#123;</span><br><span class="line"></span><br><span class="line">    private org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());</span><br><span class="line"></span><br><span class="line">    @Pointcut(<span class="string">"execution(* com.spring.learn.controller.*Controller.*(..))"</span>)</span><br><span class="line">    public void <span class="function"><span class="title">excuteService</span></span>()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Around(<span class="string">"excuteService()"</span>)</span><br><span class="line">    public  Object doAround(ProceedingJoinPoint pjp)throws Throwable&#123;</span><br><span class="line"></span><br><span class="line">        RequestAttributes ra = RequestContextHolder.getRequestAttributes();</span><br><span class="line">        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)ra;</span><br><span class="line">        HttpServletRequest request = servletRequestAttributes.getRequest();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Object[] aa = pjp.getArgs();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        String url = request.getRequestURL().toString();</span><br><span class="line"></span><br><span class="line">        String method = request.getMethod();</span><br><span class="line"></span><br><span class="line">        String uri = request.getRequestURI();</span><br><span class="line"></span><br><span class="line">        String queryString = request.getQueryString();</span><br><span class="line"></span><br><span class="line">        request.getHeader(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        request.getRemoteAddr();</span><br><span class="line">        logger.info(<span class="string">"======================start==============================="</span>);</span><br><span class="line">        logger.info(<span class="string">"请求开始, url: &#123;&#125;, method: &#123;&#125;, uri: &#123;&#125;, params: &#123;&#125;,请求体body参数: &#123;&#125;"</span>, url, method, uri, queryString,Arrays.stream(aa).map(t-&gt;t.toString()).collect(Collectors.joining(<span class="string">","</span>)));</span><br><span class="line"></span><br><span class="line">        Object result = pjp.proceed();</span><br><span class="line"></span><br><span class="line">        logger.info(<span class="string">"返回结果：&#123;&#125;"</span>,result);</span><br><span class="line">        logger.info(<span class="string">"======================end================================="</span>);</span><br><span class="line">        <span class="built_in">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Pointcut表明aop代理的范围</p>
+<p>Object result = pjp.proceed(); 执行完毕代表代理的函数已经执行完毕</p>
+<p>返回的result就是controller执行完毕返回的结果</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/09/aop实现打印请求参数/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/09/spring全局异常捕获/" class="archive-article-date">
-  	<time datetime="2019-05-09T06:05:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/09/spring全局异常捕获/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spring全局异常捕获</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/09/spring全局异常捕获/">spring全局异常捕获</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/08/Springboot-使用maven-打jar包/" class="archive-article-date">
-  	<time datetime="2019-05-08T08:01:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/08/Springboot-使用maven-打jar包/">Springboot 使用maven 打jar包</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/07/hexo-d后-ERROR-Deployer-not-found-git/" class="archive-article-date">
-  	<time datetime="2019-05-07T08:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/07/hexo-d后-ERROR-Deployer-not-found-git/">hexo d后 ERROR Deployer not found: git</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/07/hello-world/" class="archive-article-date">
-  	<time datetime="2019-05-07T08:07:22.624Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -327,8 +330,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
