@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 周铁俊的博客</title>
+  <title>linux文件权限一 | 周铁俊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="描述">
+  <meta name="description" content="linux文件和目录（一）用户和用户组 文件拥有者 就个人而言，linux用户和用户组的引入主要是为了安全考虑，由于linux是一个多人多任务的系统，因此可能会有很多人使用这台主机来进行工作，考虑到每个人的个人隐私，那么文件的拥有者就显得非常重要了，举个例子：当某一个文件对你非常重要，那么你就把该文件的权限设置成只有“我”这个用户才能读和写这个文件，然后控制其他人的权限，除非系统管理员进行了权限修">
 <meta name="keywords" content="周铁俊">
-<meta property="og:type" content="website">
-<meta property="og:title" content="周铁俊的博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux文件权限一">
+<meta property="og:url" content="http://yoursite.com/2019/07/29/linux文件权限一/index.html">
 <meta property="og:site_name" content="周铁俊的博客">
-<meta property="og:description" content="描述">
+<meta property="og:description" content="linux文件和目录（一）用户和用户组 文件拥有者 就个人而言，linux用户和用户组的引入主要是为了安全考虑，由于linux是一个多人多任务的系统，因此可能会有很多人使用这台主机来进行工作，考虑到每个人的个人隐私，那么文件的拥有者就显得非常重要了，举个例子：当某一个文件对你非常重要，那么你就把该文件的权限设置成只有“我”这个用户才能读和写这个文件，然后控制其他人的权限，除非系统管理员进行了权限修">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/07/29/linux文件权限一/img/linux_1_1.jpg">
+<meta property="og:updated_time" content="2019-07-29T05:36:24.212Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="周铁俊的博客">
-<meta name="twitter:description" content="描述">
+<meta name="twitter:title" content="linux文件权限一">
+<meta name="twitter:description" content="linux文件和目录（一）用户和用户组 文件拥有者 就个人而言，linux用户和用户组的引入主要是为了安全考虑，由于linux是一个多人多任务的系统，因此可能会有很多人使用这台主机来进行工作，考虑到每个人的个人隐私，那么文件的拥有者就显得非常重要了，举个例子：当某一个文件对你非常重要，那么你就把该文件的权限设置成只有“我”这个用户才能读和写这个文件，然后控制其他人的权限，除非系统管理员进行了权限修">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/29/linux文件权限一/img/linux_1_1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="周铁俊的博客" type="application/atom+xml">
   
@@ -154,106 +157,195 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-linux文件权限一" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux文件权限一
+    </h1>
+  
+
+        
+        <a href="/2019/07/29/linux文件权限一/" class="archive-article-date">
+  	<time datetime="2019-07-29T05:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="linux文件和目录（一）"><a href="#linux文件和目录（一）" class="headerlink" title="linux文件和目录（一）"></a>linux文件和目录（一）</h2><h3 id="用户和用户组"><a href="#用户和用户组" class="headerlink" title="用户和用户组"></a>用户和用户组</h3><ol>
+<li>文件拥有者<br> 就个人而言，linux用户和用户组的引入主要是为了安全考虑，由于linux是一个多人多任务的系统，因此可能会有很多人使用这台主机来进行工作，考虑到每个人的个人隐私，那么文件的拥有者就显得非常重要了，举个例子：当某一个文件对你非常重要，那么你就把该文件的权限设置成只有“我”这个用户才能读和写这个文件，然后控制其他人的权限，除非系统管理员进行了权限修改，不然在权限之外的人就无法对你的文件进行任何操作。</li>
+<li>用户组概念<br> 配置用户组的意义在与当你进行团队协同工作的时候。这样，当你想访问某一个文件的时候，你只需要加入具有访问该文件的权限的组就行了。</li>
+</ol>
+<ul>
+<li>用户的意义：<br>就像是一家三兄弟，虽然老大可以访问老二的房间，但是却不能翻他房间里面的抽屉</li>
+<li>用户组的概念<br>三兄弟共同拥有一个客厅，客厅里面的东西都是公用的。</li>
+</ul>
+<ol start="3">
+<li>其他人的概念<br>不是该文件的用户，也不属于该用户组。</li>
+</ol>
+<h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p>既然了解了linux的文件属性，那么怎么查看呢使用ls，首先为了方便，我们直接切换到root用户，使用命令su,然后输入密码。ls 就是list的意思。使用<strong>ls -al</strong> 可以列出所有文件详细的权限和属性(包含隐藏文件，就是文件名第一个字符为【.】的文件)，列出的内容有七个字段。如图：<br><img src="img/linux_1_1.jpg" alt="linux_1_1.jpg"><br>这几个字段的含义依次是：<br>第一栏：</p>
+<blockquote>
+<ul>
+<li>第一个字符代表这个文件是目录，文件或者链接文件等：<br>当为【d】则表示是目录<br>当为【-】则表示是文件<br>当为【l】则表示是链接文件<br>当为【b】:设备文件里面可供存储的周边设备<br>当为【c】:设备文件里面的串行端口设备，eg:鼠标，键盘</li>
+<li>接下来的字符，三个为一组，且均为【rwx】的三个参数的组合，其中【r】代表可读，【w】代表可写，【x】代表可执行，这三个权限的位置都不会变，没有相应的权限就会出现【-】而已。<br>第一组为文件拥有者可具备的权限<br>第二组为加入此用户组的账号的权限<br>第三组为非本人且没有加入本用户组的其他账号的权限</li>
+</ul>
+</blockquote>
+<hr>
+<p>第二栏：<br>代表有多少个文件名链接到此节点</p>
+<hr>
+<p>第三栏：<br>代表这个文件或者目录的拥有者账号</p>
+<hr>
+<p>第四栏：<br>代表这个文件或者目录的所属用户组</p>
+<p>第五栏标识 这个文件容量大小,默认是bytes</p>
+<p>第六栏标识 这个文件的创建日期或者最近的修改日期</p>
+<p>第七栏标识 这个文件名，如果文件名前面多了一个. ，那就代表他是隐藏文件，ls-a 可以全部查看  然而ls不能查看隐藏文件</p>
+<p>修改权限和属性</p>
+<p>chgrp : 修改文件所属的用户组权限  eg : chgrp user 文件名  该组名称必须存在</p>
+<p>chown 修改文件拥有者 chown 【-R】 账号名称  文件名</p>
+<p>chomod 修改文件的权限 如果cp 文件的时候  文件的所属权限都是没有改变的， 所以这个时候 是要使用该命令来修改文件的权限， 权限涉及三个属性 rwx  修改eg chmod 777 文件名<br>还有一种设置方法 u: user , g ： group, o : other , a: all , +: 加入,-: 移除, = :设置 </p>
+<p>eg chmod u=rwx,go=rx 文件 命令中间不加空格</p>
+<p>只想增加某一个权限就可以使用：<br> chmod a+w 文件</p>
+<p>只想去掉某个权限可以使用<br>chmod a-x 文件</p>
+<p>目录文件的权限意义</p>
+<p>对文件的意义</p>
+<p>r: 可以读取此文件的实际内容，；例如读取文本文件的文字内容<br>w: 可以编辑新增或者是修改该文件的内容（但是不能删除该文件）<br>x: 该文件具有可以被系统执行的权限</p>
+<p>对于目录的重要性</p>
+<p>r 具有读取目录结构列表的权限，可以查询该目录下面的文件名数据，即可以使用ls列举</p>
+<p>w 具有改动该目录结构列表的权限： 1. 建立新的文件或者目录，2. 删除已经存在的文件和目录（不论文件的权限是什么）。3.将已存在的文件或者目录进行更名。3，移动该目录内的文件目录位置。</p>
+<p>x: 指用户能否进入该目录成为工作目录</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/08/Springboot-使用maven-打jar包/" class="archive-article-date">
-  	<time datetime="2019-05-08T08:01:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/08/Springboot-使用maven-打jar包/">Springboot 使用maven 打jar包</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/29/linux文件权限一/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/07/hexo-d后-ERROR-Deployer-not-found-git/" class="archive-article-date">
-  	<time datetime="2019-05-07T08:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/04/springcloud教程1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springcloud教程（1）搭建server服务器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/07/hexo-d后-ERROR-Deployer-not-found-git/">hexo d后 ERROR Deployer not found: git</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/07/hello-world/" class="archive-article-date">
-  	<time datetime="2019-05-07T08:07:22.624Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/07/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -277,8 +369,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
