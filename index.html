@@ -156,6 +156,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java8的function和bifunction简单使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/03/java8的function和bifunction简单使用/">java8的function和bifunction简单使用</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/03/java8的function和bifunction简单使用/" class="archive-article-date">
+  	<time datetime="2019-09-03T02:15:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单记录一下bifunction 和 function的使用，上代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public class FuctionTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        FuctionTest fuctionTest = new FuctionTest();</span><br><span class="line">        // <span class="keyword">function</span></span><br><span class="line">        Integer res1 =  fuctionTest.compute(3, value -&gt;  value*2); // sout 3*2</span><br><span class="line">        System.out.println(res1);</span><br><span class="line"></span><br><span class="line">        Integer res2 =  fuctionTest.compute(3, value -&gt; value-1); // sout -&gt; 3-1</span><br><span class="line">        System.out.println(res2);</span><br><span class="line"></span><br><span class="line">        // compose</span><br><span class="line">        Integer res3 =  fuctionTest.computeForCompose(3, value -&gt; value*2, value-&gt; value -1); // <span class="built_in">return</span> (3-1)*2</span><br><span class="line">        System.out.println(res3);</span><br><span class="line"></span><br><span class="line">        //andthen</span><br><span class="line">        Integer res4 =  fuctionTest.computeforAndthen(3, value -&gt; value*2, value-&gt; value -1); // <span class="built_in">return</span> 3*2 -1</span><br><span class="line">        System.out.println(res4);</span><br><span class="line"></span><br><span class="line">        // bifunction</span><br><span class="line">        Integer res5 = fuctionTest.computeForBiFunction(2,3,(v1,v2)-&gt; v1+v2); // <span class="built_in">return</span> 2+3</span><br><span class="line">        System.out.println(res5);</span><br><span class="line"></span><br><span class="line">        //bifuntion and <span class="keyword">then</span></span><br><span class="line">        Integer res6 = fuctionTest.computeForBiFunctionAndThen(2,3,v1-&gt; v1*3, (v1,v2)-&gt; v1+v2); // <span class="built_in">return</span> (2+3)*3</span><br><span class="line">        System.out.println(res6);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Integer compute(Integer num, Function&lt;Integer, Integer&gt; <span class="keyword">function</span>)&#123;</span><br><span class="line">        Integer res = function.apply(num);</span><br><span class="line">        <span class="built_in">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    // 从右往左处理</span><br><span class="line">    private Integer computeForCompose(Integer nim, Function&lt;Integer, Integer&gt; function1,Function&lt;Integer, Integer&gt; function2)&#123;</span><br><span class="line">        <span class="built_in">return</span> function1.compose(function2).apply(nim);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 从左往右处理</span><br><span class="line">    private Integer computeforAndthen(Integer num, Function&lt;Integer, Integer&gt; function1, Function&lt;Integer,Integer&gt; function2)&#123;</span><br><span class="line">        <span class="built_in">return</span> function1.andThen(function2).apply(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Integer computeForBiFunction(Integer num1, Integer num2, BiFunction&lt;Integer, Integer, Integer&gt; biFunction)&#123;</span><br><span class="line">        <span class="built_in">return</span> biFunction.apply(num1,num2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private Integer computeForBiFunctionAndThen(Integer num1, Integer num2, Function&lt;Integer, Integer&gt; function1, BiFunction&lt;Integer, Integer, Integer&gt; biFunction)&#123;</span><br><span class="line">        <span class="built_in">return</span> biFunction.andThen(function1).apply(num1,num2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>个人简单理解：<br>function 定义 两个值， 第一个值代表： 传参类型， 第二个值代表 ：结果类型<br>bifunction 定义 三个个值， 第一个和第二个值值代表： 传参类型， 第三个值代表 ：结果类型</p>
+<p>eg : 现在我有三个相同类型B的变量b1,b2,b3,我需要将他们处理生成类型A的对象a1,a2,a3.往常会写一个private的方法进行transfer转化，然后return 类型A的对象。但是现在就不用这样了。直接上代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> BiFunction&lt;B, Integer ,A &gt; detailGenerateBiFunction = (b, num)-&gt;&#123;</span><br><span class="line">            <span class="keyword">if</span>(atchDTO == null)&#123;</span><br><span class="line">                <span class="built_in">return</span> null;</span><br><span class="line">            &#125;</span><br><span class="line">            A a = new A();</span><br><span class="line">            a.setDeviceModelCode(num);</span><br><span class="line">            <span class="built_in">return</span> a;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          B b1 = new B();</span><br><span class="line">//        A a1 = new A();</span><br><span class="line">//        a1.setDeviceModelCode(b1.getDeviceModelCode());</span><br><span class="line">          a1 = detailGenerateBiFunction.apply(b1,b1.getDeviceModelCode());</span><br><span class="line"></span><br><span class="line">          B b2 = new B();</span><br><span class="line">//        A a2 = new A();</span><br><span class="line">//        a2.setDeviceModelCode(b2.getDeviceModelCode());</span><br><span class="line">          a2 = detailGenerateBiFunction.apply(b2,b2.getDeviceModelCode());</span><br><span class="line">          </span><br><span class="line">          B b3 = new B();</span><br><span class="line">//        A a3 = new A();</span><br><span class="line">//        a3.setDeviceModelCode(b3.getDeviceModelCode());</span><br><span class="line">          a3 = detailGenerateBiFunction.apply(b3,b3.getDeviceModelCode());</span><br></pre></td></tr></table></figure>
+<p>这样就不用再写一个private方法了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/03/java8的function和bifunction简单使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux文件权限一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -259,77 +326,6 @@
 
 
   
-    <article id="post-springcloud教程1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/04/springcloud教程1/">springcloud教程（1）搭建server服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/04/springcloud教程1/" class="archive-article-date">
-  	<time datetime="2019-07-04T08:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.pom文件jar包引入<br>我们需要引入server相关的jar包，eg:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>然后是管理器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">		&lt;dependencies&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;Greenwich.SR1&lt;/version&gt;</span><br><span class="line">				&lt;<span class="built_in">type</span>&gt;pom&lt;/<span class="built_in">type</span>&gt;</span><br><span class="line">				&lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">		&lt;/dependencies&gt;</span><br><span class="line">	&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure></p>
-<p>记住这里的version是springcloud的版本，有可能会与springboot不兼容导致系统不能启动，一定要版本一致，我当前使用的springboot版本是<strong>2.1.2.RELEASE</strong></p>
-<p>2.配置文件配置信息（applycation.yml）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 4567</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: springcloudserver</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    <span class="comment">#关闭注册中心，注册自己到本地服务</span></span><br><span class="line">    register-with-eureka: <span class="literal">false</span></span><br><span class="line">    fetch-registry: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
-<p>如图：<br><img src="img/springcloud_1_1.jpg" alt="springcloud教程（1）搭建server服务器-1"><br>这里我贴出了所有的配置。</p>
-<p>3.开启server功能<br>需要在启动类上面添加如下注解：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@EnableEurekaServer</span><br></pre></td></tr></table></figure></p>
-<p>如图：<br><img src="img/springcloud_1_2.jpg" alt="springcloud教程（1）搭建server服务器-2"></p>
-<p>3.控制台<br>我们启动服务之后，可以登录server的监控台，比如我的就是<strong>localhost:4567</strong>,可以检测客户端的服务，我现在启动了一个服务，如图（client1）:<br><img src="img/springcloud_1_3.jpg" alt="springcloud教程（1）搭建server服务器-3"></p>
-<p>至此，我们springcloud服务注册发现的服务端就已经搭建完成了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/04/springcloud教程1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-springcloud教程2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -375,6 +371,77 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/04/springcloud教程2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-springcloud教程1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/04/springcloud教程1/">springcloud教程（1）搭建server服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/04/springcloud教程1/" class="archive-article-date">
+  	<time datetime="2019-07-04T08:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.pom文件jar包引入<br>我们需要引入server相关的jar包，eg:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后是管理器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">		&lt;dependencies&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;Greenwich.SR1&lt;/version&gt;</span><br><span class="line">				&lt;<span class="built_in">type</span>&gt;pom&lt;/<span class="built_in">type</span>&gt;</span><br><span class="line">				&lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">		&lt;/dependencies&gt;</span><br><span class="line">	&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure></p>
+<p>记住这里的version是springcloud的版本，有可能会与springboot不兼容导致系统不能启动，一定要版本一致，我当前使用的springboot版本是<strong>2.1.2.RELEASE</strong></p>
+<p>2.配置文件配置信息（applycation.yml）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 4567</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: springcloudserver</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    <span class="comment">#关闭注册中心，注册自己到本地服务</span></span><br><span class="line">    register-with-eureka: <span class="literal">false</span></span><br><span class="line">    fetch-registry: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>如图：<br><img src="img/springcloud_1_1.jpg" alt="springcloud教程（1）搭建server服务器-1"><br>这里我贴出了所有的配置。</p>
+<p>3.开启server功能<br>需要在启动类上面添加如下注解：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@EnableEurekaServer</span><br></pre></td></tr></table></figure></p>
+<p>如图：<br><img src="img/springcloud_1_2.jpg" alt="springcloud教程（1）搭建server服务器-2"></p>
+<p>3.控制台<br>我们启动服务之后，可以登录server的监控台，比如我的就是<strong>localhost:4567</strong>,可以检测客户端的服务，我现在启动了一个服务，如图（client1）:<br><img src="img/springcloud_1_3.jpg" alt="springcloud教程（1）搭建server服务器-3"></p>
+<p>至此，我们springcloud服务注册发现的服务端就已经搭建完成了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/04/springcloud教程1/">展开全文 >></a>
         </p>
       
 
@@ -778,71 +845,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/05/09/aop实现打印请求参数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring全局异常捕获" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/spring全局异常捕获/">spring全局异常捕获</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/spring全局异常捕获/" class="archive-article-date">
-  	<time datetime="2019-05-09T06:05:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="spring全局异常捕获代码"><a href="#spring全局异常捕获代码" class="headerlink" title="spring全局异常捕获代码"></a>spring全局异常捕获代码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice(basePackages = <span class="string">"com.spring.learn.controller"</span>)</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    //自定义异常类型</span><br><span class="line">    @ExceptionHandler(ZtjException.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Restful errorResultZtj(ZtjException ztjE)&#123;</span><br><span class="line">        <span class="built_in">return</span> Restful.failure(ztjE);</span><br><span class="line">    &#125;</span><br><span class="line">    //所有异常类型</span><br><span class="line">    @ExceptionHandler(Exception.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Restful errorResult(Exception e)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">return</span> Restful.failure(e.toString());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>spring 会按照顺序选取异常</p>
-<p>ControllerAdvice注解的参数代表捕获范围</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/spring全局异常捕获/">展开全文 >></a>
         </p>
       
 

@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 周铁俊的博客</title>
+  <title>java8的function和bifunction简单使用 | 周铁俊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="描述">
+  <meta name="description" content="简单记录一下bifunction 和 function的使用，上代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152public class FuctionTest &amp;#123;    public static void main(String[] arg">
 <meta name="keywords" content="周铁俊">
-<meta property="og:type" content="website">
-<meta property="og:title" content="周铁俊的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8的function和bifunction简单使用">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/java8的function和bifunction简单使用/index.html">
 <meta property="og:site_name" content="周铁俊的博客">
-<meta property="og:description" content="描述">
+<meta property="og:description" content="简单记录一下bifunction 和 function的使用，上代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152public class FuctionTest &amp;#123;    public static void main(String[] arg">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-03T02:32:01.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="周铁俊的博客">
-<meta name="twitter:description" content="描述">
+<meta name="twitter:title" content="java8的function和bifunction简单使用">
+<meta name="twitter:description" content="简单记录一下bifunction 和 function的使用，上代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152public class FuctionTest &amp;#123;    public static void main(String[] arg">
   
     <link rel="alternative" href="/atom.xml" title="周铁俊的博客" type="application/atom+xml">
   
@@ -154,295 +155,159 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-java8的function和bifunction简单使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      java8的function和bifunction简单使用
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/java8的function和bifunction简单使用/" class="archive-article-date">
+
+        
+        <a href="/2019/09/03/java8的function和bifunction简单使用/" class="archive-article-date">
   	<time datetime="2019-09-03T02:15:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/java8的function和bifunction简单使用/">java8的function和bifunction简单使用</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单记录一下bifunction 和 function的使用，上代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public class FuctionTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        FuctionTest fuctionTest = new FuctionTest();</span><br><span class="line">        // <span class="keyword">function</span></span><br><span class="line">        Integer res1 =  fuctionTest.compute(3, value -&gt;  value*2); // sout 3*2</span><br><span class="line">        System.out.println(res1);</span><br><span class="line"></span><br><span class="line">        Integer res2 =  fuctionTest.compute(3, value -&gt; value-1); // sout -&gt; 3-1</span><br><span class="line">        System.out.println(res2);</span><br><span class="line"></span><br><span class="line">        // compose</span><br><span class="line">        Integer res3 =  fuctionTest.computeForCompose(3, value -&gt; value*2, value-&gt; value -1); // <span class="built_in">return</span> (3-1)*2</span><br><span class="line">        System.out.println(res3);</span><br><span class="line"></span><br><span class="line">        //andthen</span><br><span class="line">        Integer res4 =  fuctionTest.computeforAndthen(3, value -&gt; value*2, value-&gt; value -1); // <span class="built_in">return</span> 3*2 -1</span><br><span class="line">        System.out.println(res4);</span><br><span class="line"></span><br><span class="line">        // bifunction</span><br><span class="line">        Integer res5 = fuctionTest.computeForBiFunction(2,3,(v1,v2)-&gt; v1+v2); // <span class="built_in">return</span> 2+3</span><br><span class="line">        System.out.println(res5);</span><br><span class="line"></span><br><span class="line">        //bifuntion and <span class="keyword">then</span></span><br><span class="line">        Integer res6 = fuctionTest.computeForBiFunctionAndThen(2,3,v1-&gt; v1*3, (v1,v2)-&gt; v1+v2); // <span class="built_in">return</span> (2+3)*3</span><br><span class="line">        System.out.println(res6);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Integer compute(Integer num, Function&lt;Integer, Integer&gt; <span class="keyword">function</span>)&#123;</span><br><span class="line">        Integer res = function.apply(num);</span><br><span class="line">        <span class="built_in">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    // 从右往左处理</span><br><span class="line">    private Integer computeForCompose(Integer nim, Function&lt;Integer, Integer&gt; function1,Function&lt;Integer, Integer&gt; function2)&#123;</span><br><span class="line">        <span class="built_in">return</span> function1.compose(function2).apply(nim);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 从左往右处理</span><br><span class="line">    private Integer computeforAndthen(Integer num, Function&lt;Integer, Integer&gt; function1, Function&lt;Integer,Integer&gt; function2)&#123;</span><br><span class="line">        <span class="built_in">return</span> function1.andThen(function2).apply(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Integer computeForBiFunction(Integer num1, Integer num2, BiFunction&lt;Integer, Integer, Integer&gt; biFunction)&#123;</span><br><span class="line">        <span class="built_in">return</span> biFunction.apply(num1,num2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private Integer computeForBiFunctionAndThen(Integer num1, Integer num2, Function&lt;Integer, Integer&gt; function1, BiFunction&lt;Integer, Integer, Integer&gt; biFunction)&#123;</span><br><span class="line">        <span class="built_in">return</span> biFunction.andThen(function1).apply(num1,num2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>个人简单理解：<br>function 定义 两个值， 第一个值代表： 传参类型， 第二个值代表 ：结果类型<br>bifunction 定义 三个个值， 第一个和第二个值值代表： 传参类型， 第三个值代表 ：结果类型</p>
+<p>eg : 现在我有三个相同类型B的变量b1,b2,b3,我需要将他们处理生成类型A的对象a1,a2,a3.往常会写一个private的方法进行transfer转化，然后return 类型A的对象。但是现在就不用这样了。直接上代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> BiFunction&lt;B, Integer ,A &gt; detailGenerateBiFunction = (b, num)-&gt;&#123;</span><br><span class="line">            <span class="keyword">if</span>(atchDTO == null)&#123;</span><br><span class="line">                <span class="built_in">return</span> null;</span><br><span class="line">            &#125;</span><br><span class="line">            A a = new A();</span><br><span class="line">            a.setDeviceModelCode(num);</span><br><span class="line">            <span class="built_in">return</span> a;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          B b1 = new B();</span><br><span class="line">//        A a1 = new A();</span><br><span class="line">//        a1.setDeviceModelCode(b1.getDeviceModelCode());</span><br><span class="line">          a1 = detailGenerateBiFunction.apply(b1,b1.getDeviceModelCode());</span><br><span class="line"></span><br><span class="line">          B b2 = new B();</span><br><span class="line">//        A a2 = new A();</span><br><span class="line">//        a2.setDeviceModelCode(b2.getDeviceModelCode());</span><br><span class="line">          a2 = detailGenerateBiFunction.apply(b2,b2.getDeviceModelCode());</span><br><span class="line">          </span><br><span class="line">          B b3 = new B();</span><br><span class="line">//        A a3 = new A();</span><br><span class="line">//        a3.setDeviceModelCode(b3.getDeviceModelCode());</span><br><span class="line">          a3 = detailGenerateBiFunction.apply(b3,b3.getDeviceModelCode());</span><br></pre></td></tr></table></figure>
+<p>这样就不用再写一个private方法了。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/03/java8的function和bifunction简单使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/29/linux文件权限一/" class="archive-article-date">
-  	<time datetime="2019-07-29T05:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/29/linux文件权限一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux文件权限一</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/29/linux文件权限一/">linux文件权限一</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/04/springcloud教程2/" class="archive-article-date">
-  	<time datetime="2019-07-04T08:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/04/springcloud教程2/">springcloud教程（2）搭建client客户端</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/04/springcloud教程1/" class="archive-article-date">
-  	<time datetime="2019-07-04T08:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/04/springcloud教程1/">springcloud教程（1）搭建server服务器</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/27/linux下面设置编辑文件时显示行号/" class="archive-article-date">
-  	<time datetime="2019-05-27T09:31:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/27/linux下面设置编辑文件时显示行号/">linux下面设置编辑文件时显示行号</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/22/mysql的时区错误问题：-The-server-time-zone-value-OÐ¹u±e×¼E±¼a-is-unrecognized-or-represents-more-than-one/" class="archive-article-date">
-  	<time datetime="2019-05-22T01:40:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/22/mysql的时区错误问题：-The-server-time-zone-value-OÐ¹u±e×¼E±¼a-is-unrecognized-or-represents-more-than-one/">mysql的时区错误问题： The server time zone value &#39;ÖÐ¹ú±ê×¼Ê±¼ä&#39; is unrecognized or represents more than one</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/10/redis安装/" class="archive-article-date">
-  	<time datetime="2019-05-10T01:19:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/10/redis安装/">redis安装</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/09/Navicat连接Mysql报错：Client-does-not-support-authentication-protocol-requested-by-server；/" class="archive-article-date">
-  	<time datetime="2019-05-09T07:16:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/09/Navicat连接Mysql报错：Client-does-not-support-authentication-protocol-requested-by-server；/">Navicat连接Mysql报错：Client does not support authentication protocol requested by server；</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/09/mysql安装教程/" class="archive-article-date">
-  	<time datetime="2019-05-09T07:05:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/09/mysql安装教程/">mysql安装教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-spring">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/09/aop实现打印请求参数/" class="archive-article-date">
-  	<time datetime="2019-05-09T06:10:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/09/aop实现打印请求参数/">aop实现打印请求参数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -466,8 +331,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
