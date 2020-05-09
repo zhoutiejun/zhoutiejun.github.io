@@ -326,77 +326,6 @@
 
 
   
-    <article id="post-springcloud教程1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/04/springcloud教程1/">springcloud教程（1）搭建server服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/04/springcloud教程1/" class="archive-article-date">
-  	<time datetime="2019-07-04T08:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.pom文件jar包引入<br>我们需要引入server相关的jar包，eg:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>然后是管理器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">		&lt;dependencies&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;Greenwich.SR1&lt;/version&gt;</span><br><span class="line">				&lt;<span class="built_in">type</span>&gt;pom&lt;/<span class="built_in">type</span>&gt;</span><br><span class="line">				&lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">		&lt;/dependencies&gt;</span><br><span class="line">	&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure></p>
-<p>记住这里的version是springcloud的版本，有可能会与springboot不兼容导致系统不能启动，一定要版本一致，我当前使用的springboot版本是<strong>2.1.2.RELEASE</strong></p>
-<p>2.配置文件配置信息（applycation.yml）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 4567</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: springcloudserver</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    <span class="comment">#关闭注册中心，注册自己到本地服务</span></span><br><span class="line">    register-with-eureka: <span class="literal">false</span></span><br><span class="line">    fetch-registry: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
-<p>如图：<br><img src="img/springcloud_1_1.jpg" alt="springcloud教程（1）搭建server服务器-1"><br>这里我贴出了所有的配置。</p>
-<p>3.开启server功能<br>需要在启动类上面添加如下注解：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@EnableEurekaServer</span><br></pre></td></tr></table></figure></p>
-<p>如图：<br><img src="img/springcloud_1_2.jpg" alt="springcloud教程（1）搭建server服务器-2"></p>
-<p>3.控制台<br>我们启动服务之后，可以登录server的监控台，比如我的就是<strong>localhost:4567</strong>,可以检测客户端的服务，我现在启动了一个服务，如图（client1）:<br><img src="img/springcloud_1_3.jpg" alt="springcloud教程（1）搭建server服务器-3"></p>
-<p>至此，我们springcloud服务注册发现的服务端就已经搭建完成了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/04/springcloud教程1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-springcloud教程2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -442,6 +371,77 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/04/springcloud教程2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-springcloud教程1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/04/springcloud教程1/">springcloud教程（1）搭建server服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/04/springcloud教程1/" class="archive-article-date">
+  	<time datetime="2019-07-04T08:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.pom文件jar包引入<br>我们需要引入server相关的jar包，eg:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后是管理器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">		&lt;dependencies&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;Greenwich.SR1&lt;/version&gt;</span><br><span class="line">				&lt;<span class="built_in">type</span>&gt;pom&lt;/<span class="built_in">type</span>&gt;</span><br><span class="line">				&lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">		&lt;/dependencies&gt;</span><br><span class="line">	&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure></p>
+<p>记住这里的version是springcloud的版本，有可能会与springboot不兼容导致系统不能启动，一定要版本一致，我当前使用的springboot版本是<strong>2.1.2.RELEASE</strong></p>
+<p>2.配置文件配置信息（applycation.yml）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 4567</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: springcloudserver</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    <span class="comment">#关闭注册中心，注册自己到本地服务</span></span><br><span class="line">    register-with-eureka: <span class="literal">false</span></span><br><span class="line">    fetch-registry: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>如图：<br><img src="img/springcloud_1_1.jpg" alt="springcloud教程（1）搭建server服务器-1"><br>这里我贴出了所有的配置。</p>
+<p>3.开启server功能<br>需要在启动类上面添加如下注解：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@EnableEurekaServer</span><br></pre></td></tr></table></figure></p>
+<p>如图：<br><img src="img/springcloud_1_2.jpg" alt="springcloud教程（1）搭建server服务器-2"></p>
+<p>3.控制台<br>我们启动服务之后，可以登录server的监控台，比如我的就是<strong>localhost:4567</strong>,可以检测客户端的服务，我现在启动了一个服务，如图（client1）:<br><img src="img/springcloud_1_3.jpg" alt="springcloud教程（1）搭建server服务器-3"></p>
+<p>至此，我们springcloud服务注册发现的服务端就已经搭建完成了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/04/springcloud教程1/">展开全文 >></a>
         </p>
       
 
